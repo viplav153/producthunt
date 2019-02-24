@@ -81,10 +81,13 @@ WSGI_APPLICATION = 'producthunt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        
     }
 }
+DATABASES['default']=dj_database_url.config(default='postgres://ghlpklazvbhxfd:71cff6b1c38d628f8bde91a0723c386c4a11679fea375e5ab318d8cc7855a2a9@ec2-107-20-185-27.compute-1.amazonaws.com:5432/dhfmi7vujd6bv')
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
